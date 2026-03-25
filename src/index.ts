@@ -1,4 +1,5 @@
 
+import "reflect-metadata";
 import app from "./app";
 import sequelize from "./config/database";
 import { config } from "./config/env";

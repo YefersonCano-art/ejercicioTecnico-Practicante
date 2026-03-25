@@ -1,9 +1,11 @@
 
 import express from "express";
-import type { Express, NextFunction, Request, Response } from "express";
+import type { Express, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { config } from "./config/env";
+import authRouter from "./api/routes/auth.routes";
+import { errorMiddleware } from "./api/middlewares/error.middleware";
 
 const app: Express = express();
 
@@ -25,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * Rutas de la aplicación (se registrarán en el futuro)
  */
+app.use("/auth", authRouter);
 
 /**
  * Health check endpoint
@@ -44,17 +47,7 @@ app.use((req: Request, res: Response) => {
   });
 });
 
-/**
- * Manejo global de errores (middleware)
- */
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error("Error no capturado:", err);
-
-  res.status(500).json({
-    error: "Error interno del servidor",
-    message: config.isDevelopment() ? err.message : "Intenta más tarde",
-  });
-});
+app.use(errorMiddleware);
 
 export default app;
 
