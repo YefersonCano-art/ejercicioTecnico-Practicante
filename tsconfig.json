@@ -14,6 +14,10 @@
     "verbatimModuleSyntax": true,
     "noEmit": true,
 
+    // Decorators support (required for sequelize-typescript)
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
     // Best practices
     "strict": true,
     "skipLibCheck": true,
