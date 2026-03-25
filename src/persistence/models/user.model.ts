@@ -1,10 +1,12 @@
 import {
   Column,
   DataType,
+  HasMany,
   Model,
   Table,
 } from "sequelize-typescript";
-import type { CreationOptional, InferAttributes, InferCreationAttributes } from "sequelize";
+import type { CreationOptional, InferAttributes, InferCreationAttributes, NonAttribute } from "sequelize";
+import { Task } from "./task.model";
 
 @Table({
   tableName: "users",
@@ -45,6 +47,9 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     field: "password_hash",
   })
   declare passwordHash: string;
+
+  @HasMany(() => Task)
+  declare tasks: NonAttribute<Task[]>;
 
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;

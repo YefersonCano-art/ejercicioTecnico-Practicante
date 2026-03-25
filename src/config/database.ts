@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { config } from "./env";
+import { Task } from "../persistence/models/task.model";
 import { User } from "../persistence/models/user.model";
 
 //Parsea DATABASE_URL de PostgreSQL y configurar logging según NODE_ENV.
@@ -25,6 +26,7 @@ const sequelize = new Sequelize(config.DATABASE_URL, {
 
 sequelize.addModels([
   User,
+  Task,
 ]);
 
 export default sequelize;

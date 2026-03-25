@@ -5,6 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { config } from "./config/env";
 import authRouter from "./api/routes/auth.routes";
+import taskRouter from "./api/routes/task.routes";
 import { errorMiddleware } from "./api/middlewares/error.middleware";
 
 const app: Express = express();
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
  * Rutas de la aplicación (se registrarán en el futuro)
  */
 app.use("/auth", authRouter);
+app.use("/tasks", taskRouter);
 
 /**
  * Health check endpoint
