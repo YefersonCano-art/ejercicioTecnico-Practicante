@@ -2,6 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import { AuthenticationError } from "../../errors/app-error";
 import { verifyAccessToken } from "../../utils/jwt";
 
+/**
+ * Middleware Bearer JWT.
+ * Valida el token, extrae payload y adjunta el usuario autenticado en req.user.
+ */
 export function authMiddleware(req: Request, _res: Response, next: NextFunction): void {
   const authHeader = req.headers.authorization;
 

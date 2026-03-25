@@ -1,15 +1,120 @@
-# ejerciciotecnico
+# Sistema de Gestión de Tareas API
 
-To install dependencies:
+API REST desarrollada con Node.js, Express, TypeScript y PostgreSQL para gestionar autenticación de usuarios y CRUD de tareas con ownership estricto.
+
+## Arquitectura
+
+Estructura por capas implementada:
+
+- `src/api`: rutas y middlewares HTTP.
+- `src/controllers`: adaptación request/response.
+- `src/services`: lógica de negocio.
+- `src/persistence`: modelos y repositorios de base de datos.
+- `src/schemas`: validación de entradas con Zod.
+- `src/errors`: errores custom y tipados.
+- `src/config`: configuración de entorno, conexión DB y Swagger.
+- `src/utils`: utilidades transversales (JWT).
+
+## Stack tecnológico
+
+- Node.js + Bun
+- Express.js
+- TypeScript
+- PostgreSQL
+- Sequelize + sequelize-typescript
+- Zod (validación)
+- JWT + bcryptjs (auth)
+- Swagger (documentación)
+
+## Requisitos previos
+
+- Bun instalado.
+- Instancia PostgreSQL accesible (Supabase o local).
+- Archivo `.env` configurado.
+
+## Instalación
 
 ```bash
 bun install
 ```
 
-To run:
+## Variables de entorno
+
+Usa `.env.example` como base:
 
 ```bash
-bun run index.ts
+cp .env.example .env
 ```
 
-This project was created using `bun init` in bun v1.3.9. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Variables principales:
+
+- `DATABASE_URL`: URL de conexión PostgreSQL.
+- `JWT_SECRET`: clave secreta para firmar JWT.
+- `PORT`: puerto de la API.
+- `NODE_ENV`: `development` o `production`.
+
+## Scripts
+
+- `bun run dev`: arranca en modo watch.
+- `bun run start`: arranque normal con Bun.
+- `bun run build`: validación de tipos TypeScript.
+- `bun run prod`: arranque con Node sobre `dist`.
+
+## Ejecución local
+
+```bash
+bun run dev
+```
+
+Servidor local:
+
+- API: `http://localhost:3000`
+- Health: `http://localhost:3000/health`
+- Swagger UI: `http://localhost:3000/docs`
+
+## Endpoints
+
+### Auth
+
+- `POST /auth/register`
+- `POST /auth/login`
+
+### Tasks (requiere Bearer token)
+
+- `POST /tasks`
+- `GET /tasks`
+- `GET /tasks/:id`
+- `PUT /tasks/:id`
+- `DELETE /tasks/:id`
+
+## Ownership de tareas
+
+Cada tarea se guarda con `owner_id` y todas las operaciones de lectura/edición/eliminación filtran por `req.user.id` extraído del JWT. Un usuario no puede operar tareas de otro usuario.
+
+## Validación y errores
+
+- Validación de payloads con Zod en Auth y Tasks.
+- Manejo centralizado de errores mediante `AppError`.
+- Respuesta de error consistente:
+
+```json
+{
+  "error": "VALIDATION_ERROR",
+  "message": "Error de validación",
+  "details": {
+    "email": ["Email inválido"]
+  }
+}
+```
+
+## Swagger
+
+La documentación OpenAPI está disponible en `/docs` y se genera con `swagger-jsdoc` a partir de anotaciones JSDoc en rutas.
+
+## Estado por fases
+
+- Fase A: completada.
+- Fase B: completada.
+- Fase C: completada.
+- Fase D: completada.
+- Fase E: completada.

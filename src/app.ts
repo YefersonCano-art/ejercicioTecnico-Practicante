@@ -3,10 +3,12 @@ import express from "express";
 import type { Express, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import swaggerUi from "swagger-ui-express";
 import { config } from "./config/env";
 import authRouter from "./api/routes/auth.routes";
 import taskRouter from "./api/routes/task.routes";
 import { errorMiddleware } from "./api/middlewares/error.middleware";
+import { swaggerSpec } from "./config/swagger";
 
 const app: Express = express();
 
@@ -30,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
  */
 app.use("/auth", authRouter);
 app.use("/tasks", taskRouter);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /**
  * Health check endpoint

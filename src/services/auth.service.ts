@@ -13,9 +13,15 @@ type AuthResponse = {
   };
 };
 
+/**
+ * Servicio de autenticación para registro e inicio de sesión.
+ */
 export class AuthService {
   constructor(private readonly userRepository: UserRepository) {}
 
+  /**
+   * Registra un usuario nuevo, hashea su contraseña y retorna token JWT.
+   */
   async register(input: RegisterInput): Promise<AuthResponse> {
     const existingUser = await this.userRepository.findByEmail(input.email);
     if (existingUser) {
@@ -44,6 +50,9 @@ export class AuthService {
     };
   }
 
+  /**
+   * Valida credenciales de usuario y retorna token JWT de acceso.
+   */
   async login(input: LoginInput): Promise<AuthResponse> {
     const user = await this.userRepository.findByEmail(input.email);
     if (!user) {
