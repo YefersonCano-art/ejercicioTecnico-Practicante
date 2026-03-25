@@ -65,16 +65,16 @@ class Environment {
     }
   }
 
-  /**
-   * Indica si está en modo desarrollo.
-   */
+ 
+   //Indica si está en modo desarrollo.
+   
   isDevelopment(): boolean {
     return this.NODE_ENV === "development";
   }
 
-  /**
-   * Indica si está en modo producción.
-   */
+  
+   //Indica si está en modo producción.
+   
   isProduction(): boolean {
     return this.NODE_ENV === "production";
   }
