@@ -50,6 +50,8 @@ Dejar el proyecto base ejecutable con estructura por capas, configuración centr
 
 > "Inicializar Sequelize (sequelize-typescript) y conexión PostgreSQL, preparar .env y .env.example, montar config centralizada."
 
+> **Nota:** mini skill creada basada en el archivo SDD
+
 **Aceptado:** estructura base, configuración y conexión ORM.
 
 **Rechazado/modificado:** se endurecieron validaciones de entorno y consistencia de configuración.
@@ -85,6 +87,8 @@ Implementar registro/login con JWT y middleware Bearer.
 **Prompt:**
 
 > "Usando la skill backend-technical-interview-assistant iniciemos la etapa de Auth y usa doc_spec para leer esta fase."
+
+> **Nota:** mini skill creada basada en el archivo SDD
 
 **Aceptado:** arquitectura completa por capas de Auth.
 
@@ -126,6 +130,8 @@ Implementar CRUD de tareas con ownership estricto por usuario autenticado.
 
 > "Usando la skill backend-technical-interview-assistant pasa a Fase C e implementa Task model + CRUD con ownership estricto sobre req.user.id; usa doc_spec para esta fase."
 
+> **Nota:** mini skill creada basada en el archivo SDD
+
 **Aceptado:** estructura completa de Tasks por capas.
 
 **Rechazado/modificado:** ajuste de asociaciones tipadas con `NonAttribute` para resolver errores de creación en Sequelize.
@@ -160,6 +166,8 @@ Unificar validación de entradas y manejo de errores en toda la API.
 
 > "Usando la skill backend-technical-interview-assistant pasa a Fase D para revisarlo; si todo está bien no realices cambios."
 
+> **Nota:** mini skill creada basada en el archivo SDD
+
 **Aceptado:** auditoría contra DoD sin cambios innecesarios.
 
 **Rechazado/modificado:** no se aplicaron cambios al estar la fase cumplida.
@@ -193,6 +201,8 @@ Completar entregables documentales para evaluación final.
 **Prompt:**
 
 > "Usando la skill backend-technical-interview-assistant pasa a Fase E: README completo, documentar Swagger, agregar JSDoc clave y completar DEVELOPMENT_LOG."
+
+> **Nota:** mini skill creada basada en el archivo SDD
 
 **Aceptado:** checklist de entregables de documentación.
 
