@@ -57,8 +57,8 @@ Variables principales:
 
 - `bun run dev`: arranca en modo watch.
 - `bun run start`: arranque normal con Bun.
-- `bun run build`: validación de tipos TypeScript.
-- `bun run prod`: arranque con Node sobre `dist`.
+- `bun run type-check`: validación de tipos TypeScript.
+- `bun run build`: instala dependencias y ejecuta validación de tipos.
 
 ## Ejecución local
 
