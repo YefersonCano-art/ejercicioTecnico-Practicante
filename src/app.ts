@@ -32,7 +32,9 @@ app.use(express.urlencoded({ extended: true }));
  */
 app.use("/auth", authRouter);
 app.use("/tasks", taskRouter);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/docs", swaggerUi.serve);
+app.get("/docs", swaggerUi.setup(swaggerSpec));
+app.get("/docs/", swaggerUi.setup(swaggerSpec));
 
 /**
  * Health check endpoint
