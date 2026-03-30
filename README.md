@@ -26,6 +26,12 @@ Estructura por capas implementada:
 - JWT + bcryptjs (auth)
 - Swagger (documentación)
 
+## Despliegue en Render
+
+- URL principal (Swagger UI): [https://ejerciciotecnico-practicante.onrender.com/docs/](https://ejerciciotecnico-practicante.onrender.com/docs/)
+- API base: [https://ejerciciotecnico-practicante.onrender.com](https://ejerciciotecnico-practicante.onrender.com)
+- Health: [https://ejerciciotecnico-practicante.onrender.com/health](https://ejerciciotecnico-practicante.onrender.com/health)
+
 ## Requisitos previos
 
 - Bun instalado.
@@ -68,9 +74,9 @@ bun run dev
 
 Servidor local:
 
-- API: `http://localhost:3000`
-- Health: `http://localhost:3000/health`
-- Swagger UI: `http://localhost:3000/docs`
+- API: [http://localhost:3000](http://localhost:3000)
+- Health: [http://localhost:3000/health](http://localhost:3000/health)
+- Swagger UI: [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ## Endpoints
 
@@ -110,6 +116,9 @@ Cada tarea se guarda con `owner_id` y todas las operaciones de lectura/edición/
 ## Swagger
 
 La documentación OpenAPI está disponible en `/docs` y se genera con `swagger-jsdoc` a partir de anotaciones JSDoc en rutas.
+
+- Local: [http://localhost:3000/docs](http://localhost:3000/docs)
+- Producción (Render): [https://ejerciciotecnico-practicante.onrender.com/docs/](https://ejerciciotecnico-practicante.onrender.com/docs/)
 
 ## Estado por fases
 
