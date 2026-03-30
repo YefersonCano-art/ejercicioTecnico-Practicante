@@ -1,6 +1,12 @@
 import swaggerJSDoc from "swagger-jsdoc";
 import type { Options } from "swagger-jsdoc";
 
+const localServerUrl = `http://localhost:${process.env.PORT || "3000"}`;
+const renderServerUrl = process.env.RENDER_EXTERNAL_URL
+  ? `https://${process.env.RENDER_EXTERNAL_URL.replace(/^https?:\/\//, "")}`
+  : undefined;
+const publicServerUrl = process.env.PUBLIC_API_URL || renderServerUrl;
+
 const options: Options = {
   definition: {
     openapi: "3.0.3",
@@ -10,8 +16,16 @@ const options: Options = {
       description: "API REST para autenticación y gestión de tareas con ownership por usuario.",
     },
     servers: [
+      ...(publicServerUrl
+        ? [
+            {
+              url: publicServerUrl,
+              description: "Servidor producción",
+            },
+          ]
+        : []),
       {
-        url: "http://localhost:3000",
+        url: localServerUrl,
         description: "Servidor local",
       },
     ],
