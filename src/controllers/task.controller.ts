@@ -5,10 +5,10 @@ import {
   taskIdParamSchema,
   updateTaskSchema,
 } from "../schemas/task.schema";
-import { TaskService } from "../services/task.service";
+import type { ITaskService } from "../types/interfaces/task-service.interface";
 
 export class TaskController {
-  constructor(private readonly taskService: TaskService) {}
+  constructor(private readonly taskService: ITaskService) {}
 
   create = async (req: Request, res: Response): Promise<void> => {
     const parsedBody = createTaskSchema.safeParse(req.body);

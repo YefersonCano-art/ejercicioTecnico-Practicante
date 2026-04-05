@@ -1,13 +1,12 @@
 import { Task } from "./models/task.model";
+import type {
+  CreateTaskData,
+  ITaskRepository,
+  UpdateTaskData,
+} from "../types/interfaces/task-repository.interface";
 
-export class TaskRepository {
-  async create(data: {
-    ownerId: string;
-    titulo: string;
-    descripcion: string;
-    fechaVencimiento: Date;
-    estado?: "pendiente" | "en curso" | "completada";
-  }): Promise<Task> {
+export class TaskRepository implements ITaskRepository {
+  async create(data: CreateTaskData): Promise<Task> {
     return Task.create(data);
   }
 
@@ -25,12 +24,7 @@ export class TaskRepository {
   async updateByIdAndOwner(
     id: string,
     ownerId: string,
-    updates: Partial<{
-      titulo: string;
-      descripcion: string;
-      fechaVencimiento: Date;
-      estado: "pendiente" | "en curso" | "completada";
-    }>
+    updates: UpdateTaskData
   ): Promise<Task | null> {
     const task = await this.findByIdAndOwner(id, ownerId);
     if (!task) {

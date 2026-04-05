@@ -4,11 +4,13 @@ import { TaskRepository } from "../../persistence/task.repository";
 import { TaskService } from "../../services/task.service";
 import { asyncHandler } from "../middlewares/async-handler";
 import { authMiddleware } from "../middlewares/auth.middleware";
+import type { ITaskRepository } from "../../types/interfaces/task-repository.interface";
+import type { ITaskService } from "../../types/interfaces/task-service.interface";
 
 const taskRouter = Router();
 
-const taskRepository = new TaskRepository();
-const taskService = new TaskService(taskRepository);
+const taskRepository: ITaskRepository = new TaskRepository();
+const taskService: ITaskService = new TaskService(taskRepository);
 const taskController = new TaskController(taskService);
 
 taskRouter.use(authMiddleware);

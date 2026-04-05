@@ -1,8 +1,9 @@
 import { UniqueConstraintError } from "sequelize";
 import { ConflictError } from "../errors/app-error";
 import { User } from "./models/user.model";
+import type { CreateUserData, IUserRepository } from "../types/interfaces/user-repository.interface";
 
-export class UserRepository {
+export class UserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<User | null> {
     return User.findOne({ where: { email } });
   }
@@ -11,11 +12,7 @@ export class UserRepository {
     return User.findByPk(id);
   }
 
-  async create(data: {
-    name: string;
-    email: string;
-    passwordHash: string;
-  }): Promise<User> {
+  async create(data: CreateUserData): Promise<User> {
     try {
       return await User.create(data);
     } catch (error) {

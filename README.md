@@ -120,6 +120,34 @@ La documentación OpenAPI está disponible en `/docs` y se genera con `swagger-j
 - Local: [http://localhost:3000/docs](http://localhost:3000/docs)
 - Producción (Render): [https://ejerciciotecnico-practicante.onrender.com/docs/](https://ejerciciotecnico-practicante.onrender.com/docs/)
 
+## Ejemplo de mock tipado para pruebas unitarias
+
+Con el refactor por inversión de dependencias, los controladores dependen de interfaces y se pueden probar con mocks de objeto.
+
+```ts
+import type { LoginInput, RegisterInput } from "./src/schemas/auth.schema";
+import type { IAuthService } from "./src/types/interfaces/auth-service.interface";
+import { AuthController } from "./src/controllers/auth.controller";
+
+const authResponse = {
+  token: "jwt-token-demo",
+  user: {
+    id: "user-id",
+    name: "Ada Lovelace",
+    email: "ada@example.com",
+  },
+};
+
+const mockAuthService: IAuthService = {
+  register: async (_input: RegisterInput) => authResponse,
+  login: async (_input: LoginInput) => authResponse,
+};
+
+const controller = new AuthController(mockAuthService);
+```
+
+El controlador queda desacoplado de la implementación real de AuthService y solo requiere cumplir el contrato IAuthService.
+
 ## Estado por fases
 
 - Fase A: completada.

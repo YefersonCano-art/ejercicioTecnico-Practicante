@@ -1,12 +1,13 @@
 import { AuthenticationError, NotFoundError } from "../errors/app-error";
-import { TaskRepository } from "../persistence/task.repository";
 import type { CreateTaskInput, UpdateTaskInput } from "../schemas/task.schema";
+import type { ITaskRepository } from "../types/interfaces/task-repository.interface";
+import type { ITaskService } from "../types/interfaces/task-service.interface";
 
 /**
  * Servicio de negocio para CRUD de tareas con ownership estricto por usuario.
  */
-export class TaskService {
-  constructor(private readonly taskRepository: TaskRepository) {}
+export class TaskService implements ITaskService {
+  constructor(private readonly taskRepository: ITaskRepository) {}
 
   /**
    * Crea una tarea asociada al usuario autenticado.

@@ -3,11 +3,13 @@ import { AuthController } from "../../controllers/auth.controller";
 import { AuthService } from "../../services/auth.service";
 import { UserRepository } from "../../persistence/user.repository";
 import { asyncHandler } from "../middlewares/async-handler";
+import type { IAuthService } from "../../types/interfaces/auth-service.interface";
+import type { IUserRepository } from "../../types/interfaces/user-repository.interface";
 
 const authRouter = Router();
 
-const userRepository = new UserRepository();
-const authService = new AuthService(userRepository);
+const userRepository: IUserRepository = new UserRepository();
+const authService: IAuthService = new AuthService(userRepository);
 const authController = new AuthController(authService);
 
 /**

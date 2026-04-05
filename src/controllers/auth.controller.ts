@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
-import { AuthService } from "../services/auth.service";
 import { loginSchema, registerSchema } from "../schemas/auth.schema";
 import { ValidationError } from "../errors/app-error";
+import type { IAuthService } from "../types/interfaces/auth-service.interface";
 
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: IAuthService) {}
 
   register = async (req: Request, res: Response): Promise<void> => {
     const parsed = registerSchema.safeParse(req.body);

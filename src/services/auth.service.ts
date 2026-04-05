@@ -1,23 +1,16 @@
 import bcrypt from "bcryptjs";
 import { AuthenticationError, ConflictError } from "../errors/app-error";
-import { UserRepository } from "../persistence/user.repository";
 import type { LoginInput, RegisterInput } from "../schemas/auth.schema";
+import type { IUserRepository } from "../types/interfaces/user-repository.interface";
+import type { IAuthService } from "../types/interfaces/auth-service.interface";
+import type { AuthResponse } from "../types/auth.types";
 import { signAccessToken } from "../utils/jwt";
-
-type AuthResponse = {
-  token: string;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
-};
 
 /**
  * Servicio de autenticación para registro e inicio de sesión.
  */
-export class AuthService {
-  constructor(private readonly userRepository: UserRepository) {}
+export class AuthService implements IAuthService {
+  constructor(private readonly userRepository: IUserRepository) {}
 
   /**
    * Registra un usuario nuevo, hashea su contraseña y retorna token JWT.
